@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="org.mybatis.knowledges.persistence.KnowledgeMapper">
+
+  <cache />
+
+  <select id="getKnowledgeByTitle" resultType="Knowledge">
+    SELECT
+          TITLE,
+          SORT,
+          SUMMARY,
+          KNOWLEDGE,
+          COMMENT
+    FROM KNOWLEDGES
+    WHERE TITLE = #{title}
+  </select>
+
+  <update id="updateKnowledge" parameterType="Knowledge">
+    UPDATE KNOWLEDGES SET
+      TITLE = #{title},
+      SORT = #{sort},
+      SUMMARY = #{summary},
+      KNOWLEDGE = #{knowledge},
+      COMMENT = #{comment},
+    WHERE TITLE = #{title}
+  </update>
+
+  <insert id="insertKnowledge" parameterType="Knowledge">
+    INSERT INTO KNOWLEDGES
+      (TITLE, SORT, SUMMARY, KNOWLEDGE, COMMENT)
+    VALUES
+      (#{title}, #{sort}, #{summary}, #{knowledge}, #{comment}, #{title})
+  </insert>
+
+</mapper>
